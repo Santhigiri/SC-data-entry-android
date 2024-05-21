@@ -33,12 +33,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.sc_data_entry.nav.AppNavHost
 import com.example.sc_data_entry.nav.AppNavRoutes
+import com.example.sc_data_entry.state.AppActions
+import com.example.sc_data_entry.state.AppState
+import org.reduxkotlin.compose.rememberDispatcher
+import org.reduxkotlin.compose.selectState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomePage(
     navController: NavHostController = rememberNavController(),
 ){
+    val currentPage = selectState<AppState,AppNavRoutes>{currentPage}
+    val dispatch = rememberDispatcher()
     val scope = rememberCoroutineScope()
     PermanentNavigationDrawer(
         drawerContent = {
@@ -64,9 +70,10 @@ fun HomePage(
                            Text(text = "Edit by Date")
                        }
                    },
-                       selected = true,//TODO: add logic to check if the user is currently in this page
+                       selected = currentPage.value == AppNavRoutes.EDIT_BY_DATE_PAGE,//TODO: add logic to check if the user is currently in this page
                        onClick = {
                            navController.navigate(AppNavRoutes.EDIT_BY_DATE_PAGE.name)
+                           dispatch(AppActions.NavigateToEditByDatePage)
                        //TODO: add navigation to EditByDatePage
                    })
                     NavigationDrawerItem(
@@ -82,9 +89,10 @@ fun HomePage(
                                 Text(text = "Edit By Significance")
                             }
                     },
-                        selected = false,
+                        selected = currentPage.value == AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE,
                         onClick = {
                             navController.navigate(AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE.name)
+                            dispatch(AppActions.NavigateToEditBySignificancePage)
                             //TODO: add navigation to EditBySignificancePage
                         })
                 }
