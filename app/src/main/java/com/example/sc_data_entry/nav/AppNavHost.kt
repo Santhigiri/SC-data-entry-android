@@ -10,12 +10,12 @@ import com.example.sc_data_entry.screens.EditBySignificancePage
 @Composable
 fun AppNavHost(navController: NavHostController){
 
-    NavHost(navController = navController, startDestination = AppNavRoutes.EDIT_BY_DATE_PAGE) {
-        composable(AppNavRoutes.EDIT_BY_DATE_PAGE){
+    NavHost(navController = navController, startDestination = AppNavRoutes.EDIT_BY_DATE_PAGE.name ){
+        composable(AppNavRoutes.EDIT_BY_DATE_PAGE.name){
             EditByDatePage()
         }
 
-        composable(AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE){
+        composable(AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE.name){
             EditBySignificancePage()
         }
 

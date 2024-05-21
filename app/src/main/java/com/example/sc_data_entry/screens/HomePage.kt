@@ -66,7 +66,7 @@ fun HomePage(
                    },
                        selected = true,//TODO: add logic to check if the user is currently in this page
                        onClick = {
-                           navController.navigate(AppNavRoutes.EDIT_BY_DATE_PAGE)
+                           navController.navigate(AppNavRoutes.EDIT_BY_DATE_PAGE.name)
                        //TODO: add navigation to EditByDatePage
                    })
                     NavigationDrawerItem(
@@ -84,7 +84,7 @@ fun HomePage(
                     },
                         selected = false,
                         onClick = {
-                            navController.navigate(AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE)
+                            navController.navigate(AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE.name)
                             //TODO: add navigation to EditBySignificancePage
                         })
                 }
