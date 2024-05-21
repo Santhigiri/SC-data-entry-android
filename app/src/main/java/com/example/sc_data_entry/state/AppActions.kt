@@ -1,6 +1,10 @@
 package com.example.sc_data_entry.state
 
-sealed class AppActions{
-    data object NavigateToEditByDatePage: AppActions()
-    data object  NavigateToEditBySignificancePage: AppActions()
+import java.time.LocalDate
+
+sealed interface AppActions{
+    data object NavigateToEditByDatePage: AppActions
+    data object  NavigateToEditBySignificancePage: AppActions
+
+    data class ChangeDate(val selectedDate: LocalDate) : AppActions
 }

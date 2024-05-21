@@ -7,7 +7,8 @@ import org.reduxkotlin.typedReducer
 
 val rootReducer: Reducer<AppState> = typedReducer<AppState,AppActions>{ state, action ->
     when(action){
-        AppActions.NavigateToEditByDatePage -> state.copy(currentPage = AppNavRoutes.EDIT_BY_DATE_PAGE)
-        AppActions.NavigateToEditBySignificancePage -> state.copy(currentPage = AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE)
+        is AppActions.NavigateToEditByDatePage -> state.copy(currentPage = AppNavRoutes.EDIT_BY_DATE_PAGE)
+        is AppActions.NavigateToEditBySignificancePage -> state.copy(currentPage = AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE)
+        is AppActions.ChangeDate -> state.copy(selectedDate = action.selectedDate)
     }
 }

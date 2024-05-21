@@ -17,6 +17,7 @@ import com.example.sc_data_entry.state.rootReducer
 import kotlinx.serialization.json.Json
 import org.reduxkotlin.compose.StoreProvider
 import org.reduxkotlin.createStore
+import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,8 @@ class MainActivity : ComponentActivity() {
                 store = createStore(
                     rootReducer,
                     AppState(
-                dateResponse = Json.decodeFromString(dateJsonResponse)
+                dateResponse = Json.decodeFromString(dateJsonResponse),
+                        selectedDate = LocalDate.now()
             ))) {
                 AppTheme {
                     // A surface container using the 'background' color from the theme
