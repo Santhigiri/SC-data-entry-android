@@ -7,7 +7,7 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.example.repository.DateResponse
+import com.example.sc_data_entry.models.DateResponse
 
 class AppRepository {
     private val client = HttpClient(CIO){
@@ -21,7 +21,7 @@ class AppRepository {
         }
     }
     val baseUrl: String = "http://10.0.0.151:5000"
-    suspend fun getDateResponse() : DateResponse{
+    suspend fun getDateResponse() : DateResponse {
         val subUrl: String = "/date/v1"
         val response = client.get(baseUrl + subUrl).body<DateResponse>()
         println(response.toString())

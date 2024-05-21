@@ -9,7 +9,9 @@ lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.8.2"
 composeBom = "2023.08.00"
 material3Android = "1.2.1"
+reduxKotlinCompose = "0.6.0"
 reduxKotlinThreadsafe = "0.6.0"
+reduxKotlinThunk = "0.6.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,7 +29,9 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
+redux-kotlin-compose = { module = "org.reduxkotlin:redux-kotlin-compose", version.ref = "reduxKotlinCompose" }
 redux-kotlin-threadsafe = { module = "org.reduxkotlin:redux-kotlin-threadsafe", version.ref = "reduxKotlinThreadsafe" }
+redux-kotlin-thunk = { module = "org.reduxkotlin:redux-kotlin-thunk", version.ref = "reduxKotlinThunk" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

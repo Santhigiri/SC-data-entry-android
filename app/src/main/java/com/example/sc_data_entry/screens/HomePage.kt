@@ -67,14 +67,13 @@ fun HomePage(
                                imageVector = Icons.Default.DateRange,
                                contentDescription = "Homepage")
                            Spacer(modifier = Modifier.width(8.dp))
-                           Text(text = "Edit by Date")
+                           Text(text = "Edit By Date")
                        }
                    },
-                       selected = currentPage.value == AppNavRoutes.EDIT_BY_DATE_PAGE,//TODO: add logic to check if the user is currently in this page
+                       selected = currentPage.value == AppNavRoutes.EDIT_BY_DATE_PAGE,
                        onClick = {
                            navController.navigate(AppNavRoutes.EDIT_BY_DATE_PAGE.name)
                            dispatch(AppActions.NavigateToEditByDatePage)
-                       //TODO: add navigation to EditByDatePage
                    })
                     NavigationDrawerItem(
                         label = {
@@ -93,14 +92,12 @@ fun HomePage(
                         onClick = {
                             navController.navigate(AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE.name)
                             dispatch(AppActions.NavigateToEditBySignificancePage)
-                            //TODO: add navigation to EditBySignificancePage
                         })
                 }
             }
         },
     ) {
         Scaffold(
-
             floatingActionButton = {
                 FloatingActionButton(onClick = {
                     //TODO: // Add functionality to add significance

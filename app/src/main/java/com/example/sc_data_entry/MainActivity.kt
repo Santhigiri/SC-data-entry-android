@@ -9,9 +9,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.sc_data_entry.models.dateJsonResponse
+import com.example.sc_data_entry.nav.AppNavRoutes
 import com.example.sc_data_entry.screens.HomePage
 import com.example.sc_data_entry.state.AppState
 import com.example.sc_data_entry.state.rootReducer
+import kotlinx.serialization.json.Json
 import org.reduxkotlin.compose.StoreProvider
 import org.reduxkotlin.createStore
 
@@ -19,7 +22,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            StoreProvider(store = createStore(rootReducer, AppState(0))) {
+            StoreProvider(
+                store = createStore(
+                    rootReducer,
+                    AppState(
+                dateResponse = Json.decodeFromString(dateJsonResponse)
+            ))) {
                 AppTheme {
                     // A surface container using the 'background' color from the theme
                     Surface(
