@@ -10,6 +10,5 @@ fun FixedPrayerCard(
 ){
     CardPrimary(
         headline = prayerTime,
-        subhead = prayerType
-    )
+        subhead = prayerType )
 }
