@@ -36,7 +36,7 @@ import com.example.sc_data_entry.components.SignificancesListView
 import com.example.sc_data_entry.state.AppState
 import com.example.sc_data_entry.models.DateResponse
 import com.example.sc_data_entry.state.AppActions
-import com.example.sc_data_entry.state.addSignificanceThunk
+import com.example.sc_data_entry.state.addPrayerTimeThunk
 import com.example.sc_data_entry.utils.AppDateUtils
 import components.buttons.PrimaryButton
 import org.reduxkotlin.compose.rememberDispatcher
@@ -125,7 +125,7 @@ fun EditByDatePage(
                     PrimaryButton(
                         label = "Update",
                         onClick = {
-                            dispatch(addSignificanceThunk(coroutineScope = coroutineScope,prayerTime = "06:20"))
+                            dispatch(addPrayerTimeThunk(coroutineScope = coroutineScope,prayerTime = "06:20"))
                         }
                     ) }
             }
