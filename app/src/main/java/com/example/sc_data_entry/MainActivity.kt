@@ -15,8 +15,10 @@ import com.example.sc_data_entry.screens.HomePage
 import com.example.sc_data_entry.state.AppState
 import com.example.sc_data_entry.state.rootReducer
 import kotlinx.serialization.json.Json
+import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.compose.StoreProvider
 import org.reduxkotlin.createStore
+import org.reduxkotlin.thunk.createThunkMiddleware
 import java.time.LocalDate
 
 class MainActivity : ComponentActivity() {
@@ -28,8 +30,10 @@ class MainActivity : ComponentActivity() {
                     rootReducer,
                     AppState(
                 dateResponse = Json.decodeFromString(dateJsonResponse),
-                        selectedDate = LocalDate.now()
-            ))) {
+                        selectedDate = LocalDate.now(),
+                        dateResponseUpdated = Json.decodeFromString(dateJsonResponse)
+            ), applyMiddleware(createThunkMiddleware())
+                    )) {
                 AppTheme {
                     // A surface container using the 'background' color from the theme
                     Surface(

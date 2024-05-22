@@ -10,5 +10,15 @@ val rootReducer: Reducer<AppState> = typedReducer<AppState,AppActions>{ state, a
         is AppActions.NavigateToEditByDatePage -> state.copy(currentPage = AppNavRoutes.EDIT_BY_DATE_PAGE)
         is AppActions.NavigateToEditBySignificancePage -> state.copy(currentPage = AppNavRoutes.EDIT_BY_SIGNIFICANCE_PAGE)
         is AppActions.ChangeDate -> state.copy(selectedDate = action.selectedDate)
+        is AppActions.AddSignificance -> TODO()
+        is AppActions.AddSpecialPrayer -> state.copy(
+            dateResponse = state.dateResponse.copy(
+                prayers = listOf(action.prayerTime) + state.dateResponse.prayers
+        ))
+        is AppActions.EditVariablePrayer -> TODO()
+        is AppActions.RemoveSignificance -> TODO()
+        is AppActions.RemoveSpecialPrayer -> TODO()
+        AppActions.DataFetchingStarted -> state.copy(isLoading = true)
+        AppActions.DataFetchingStopped -> state.copy(isLoading = false)
     }
 }

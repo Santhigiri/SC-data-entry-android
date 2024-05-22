@@ -72,7 +72,7 @@ dependencies {
 //    implementation(libs.redux.kotlin.threadsafe)
     implementation(libs.redux.kotlin.compose)
     implementation(libs.redux.kotlin.thunk)
-
+    implementation("org.reduxkotlin:redux-kotlin-threadsafe:0.6.0")
     //Ktor
     implementation("io.ktor:ktor-client-core:2.3.11")
     implementation("io.ktor:ktor-client-cio:2.3.11")
