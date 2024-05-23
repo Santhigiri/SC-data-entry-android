@@ -13,7 +13,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalDrawerSheet
@@ -21,15 +22,16 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.example.sc_data_entry.nav.AppNavHost
 import com.example.sc_data_entry.nav.AppNavRoutes
@@ -46,6 +48,7 @@ fun HomePage(
     val currentPage = selectState<AppState,AppNavRoutes>{currentPage}
     val dispatch = rememberDispatcher()
     val scope = rememberCoroutineScope()
+    var showAddButtonMenu by remember { mutableStateOf(false) }
     PermanentNavigationDrawer(
         drawerContent = {
             ModalDrawerSheet(
@@ -101,8 +104,30 @@ fun HomePage(
             floatingActionButton = {
                 FloatingActionButton(onClick = {
                     //TODO: // Add functionality to add significance
+                    showAddButtonMenu = true
+//                    addNewItemManager(currentPage = currentPage.value)
                 }) {
                     Text(text = "+")
+                    if(showAddButtonMenu){
+                        DropdownMenu(
+                            expanded = true,
+                            onDismissRequest = { showAddButtonMenu = false }
+                        ) {
+                            DropdownMenuItem(
+                                text = { Text(text = "Add Significance") },
+                                onClick = {
+                                    dispatch(AppActions.ShowSignificanceDialog)
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = { Text(text = "Add Prayer") },
+                                onClick = {
+
+                                }
+                            )
+                        }
+                    }
+
                 }
             }
         ) {innerPadding ->
@@ -120,4 +145,5 @@ fun HomePage(
         }
 
     }
+
 

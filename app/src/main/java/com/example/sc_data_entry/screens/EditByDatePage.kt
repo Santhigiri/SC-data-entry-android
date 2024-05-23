@@ -56,10 +56,23 @@ fun EditByDatePage(
     val dateResponse by selectState < AppState, DateResponse>{dateResponse}
     val datePickerState = rememberDatePickerState()
     var showDatePicker by remember { mutableStateOf(false)}
+    val showAddSignificanceDialog by selectState<AppState,Boolean>{showAddSignificanceDialog}
+    val showAddPrayerTimeDialog by selectState<AppState,Boolean>{showAddPrayerTimeDialog}
     if(isLoadingState){
         Dialog(onDismissRequest = { /*TODO*/ }) {
             CircularProgressIndicator()
         }}
+    else if (showAddSignificanceDialog){
+        SignificanceDialog(
+            onDismissRequest = {
+                dispatch(AppActions.HideSignificanceDialog)
+            },
+            onConfirmRequest = {}
+        )
+    }
+    else if(showAddPrayerTimeDialog){
+        prayerTimeDialog()
+    }
         Column {
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -143,8 +156,10 @@ fun EditByDatePage(
                         VerticalDivider()
                         PrayerGridView(prayers = dateResponse.prayers)
                     }
+
                 }
             }
         }
+
 }
 

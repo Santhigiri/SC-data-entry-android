@@ -12,6 +12,7 @@ data class Significance(
 )
 
 
+
 enum class SignificanceType{
     CHOTHI,
     POURNAMI,

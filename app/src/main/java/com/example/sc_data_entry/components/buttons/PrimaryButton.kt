@@ -12,7 +12,7 @@ import ui.theme.shapes
 @Composable
 fun PrimaryButton(
     label: String,
-   onClick: () -> Unit,
+    onClick: () -> Unit,
 ) {
     Button(
         onClick = onClick,
