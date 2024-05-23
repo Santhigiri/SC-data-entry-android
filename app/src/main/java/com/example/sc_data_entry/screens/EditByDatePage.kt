@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -32,13 +33,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.example.sc_data_entry.components.PrayerGridView
-import com.example.sc_data_entry.components.SignificancesListView
 import com.example.sc_data_entry.state.AppState
 import com.example.sc_data_entry.models.DateResponse
+import com.example.sc_data_entry.models.Significance
 import com.example.sc_data_entry.state.AppActions
 import com.example.sc_data_entry.state.addPrayerTimeThunk
 import com.example.sc_data_entry.utils.AppDateUtils
 import components.buttons.PrimaryButton
+import components.cards.SignificanceListItem
 import org.reduxkotlin.compose.rememberDispatcher
 import org.reduxkotlin.compose.selectState
 import ui.theme.appTypography
@@ -152,7 +154,9 @@ fun EditByDatePage(
                     Row (
                         modifier = Modifier.fillMaxSize(),
                     ){
-                        SignificancesListView(significances = dateResponse.significances)
+                        SignificancesListView(
+                            significances = dateResponse.significances,
+                            )
                         VerticalDivider()
                         PrayerGridView(prayers = dateResponse.prayers)
                     }
@@ -162,4 +166,23 @@ fun EditByDatePage(
         }
 
 }
+@Composable
+fun SignificancesListView(
+    significances: List<Significance>,
 
+//    onDelete:() -> Unit,
+){
+    val dispatch = rememberDispatcher()
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(0.5f),
+    ) {
+        items(significances.size) { index ->
+            val significance = significances[index]
+            SignificanceListItem(
+                labelText = significance.name,
+                onDelete = {dispatch(AppActions.RemoveSignificance(significance.type))}
+            )
+
+        }
+    }
+}

@@ -34,7 +34,16 @@ val rootReducer: Reducer<AppState> = typedReducer<AppState,AppActions>{ state, a
 
         is AppActions.EditVariablePrayer -> TODO()
 
-        is AppActions.RemoveSignificance -> TODO()
+        is AppActions.RemoveSignificance -> {
+            val updatedSignificances = state.dateResponse.significances.filter {
+                it.type != action.significanceType
+            }
+            state.copy(
+                dateResponse = state.dateResponse.copy(
+                    significances = updatedSignificances
+                )
+            )
+        }
 
         is AppActions.RemoveSpecialPrayer -> TODO()
 

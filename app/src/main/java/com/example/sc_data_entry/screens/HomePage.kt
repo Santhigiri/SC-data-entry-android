@@ -108,25 +108,24 @@ fun HomePage(
 //                    addNewItemManager(currentPage = currentPage.value)
                 }) {
                     Text(text = "+")
-                    if(showAddButtonMenu){
                         DropdownMenu(
-                            expanded = true,
+                            expanded = showAddButtonMenu,
                             onDismissRequest = { showAddButtonMenu = false }
                         ) {
                             DropdownMenuItem(
                                 text = { Text(text = "Add Significance") },
                                 onClick = {
                                     dispatch(AppActions.ShowSignificanceDialog)
+                                    showAddButtonMenu = false
                                 }
                             )
                             DropdownMenuItem(
                                 text = { Text(text = "Add Prayer") },
                                 onClick = {
-
+                                    showAddButtonMenu = false
                                 }
                             )
                         }
-                    }
 
                 }
             }
